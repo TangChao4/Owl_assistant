@@ -6,6 +6,8 @@
 |------|------|------|------|------|
 | 2026-10-21 | 职责 | 三机职责分工_猫头鹰_AGX_云端.md | 全部 | v2026-10-21b：四端定责；**本机=第二任务发布台** |
 | 2026-10-21 | 计划 | ../docs/DEV_PHASE_PLAN_CN.md | host/agx | **20B 就绪**；P0 联通→P1 Agent→P2 猫头鹰→P3 联调→P4 GitHub |
+| 2026-10-21 | 考验 | ../docs/CLOUD_EXAM_20261021.md | cloud | 亲自考：环活/防泄过/V6绿；增长停滞；无8788 |
+| 2026-10-21 | 协议 | ../docs/ENDPOINT_PROTOCOL_CN.md | 全部 | TCP 信封 + 端点字典（host/agx/cloud/owl） |
 | 2026-10-21 | DEVLOG | DEVLOG_20261021.md | host/agx/owl/cloud | 见当日日志 |
 
 ## 未关闭 ISSUE
