@@ -1,8 +1,11 @@
 # owl-agent-line
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 猫头鹰助手 · 本机第二任务台 · AGX 强推理 · 云端 TC/Alpha 的**运维与开发日志线**。
 
-> **不包含**模型权重（GGUF / Ollama blobs）。权重仍在本机盘、U 盘、AGX 上。
+> **不包含**模型权重（GGUF / Ollama blobs）。权重仍在本机盘、U 盘、AGX 上。  
+> **许可证**：本仓库以 [MIT License](LICENSE) 开源。第三方模型权重各自遵循其原许可证（Qwen / Ollama 模型卡等），不因本仓 MIT 而改变。
 
 ## 四端入口
 
@@ -32,11 +35,15 @@ cd ~/owl-agent-line
 git status
 ```
 
-### 3. 创建远程并推送（推荐私有）
+### 3. 创建远程并推送（开源用公开库）
 
 ```bash
-# 在已 login 的前提下：
-gh repo create owl-agent-line --private --source=. --remote=origin --push
+# 在已 login 的前提下（公开开源）：
+gh repo create owl-agent-line --public --source=. --remote=origin --push
+
+# 若暂时不想公开，可先：
+# gh repo create owl-agent-line --private --source=. --remote=origin --push
+# 以后再在 GitHub 仓库 Settings → Change visibility → Public
 ```
 
 若仓库已在网页上建好：

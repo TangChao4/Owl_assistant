@@ -12,7 +12,8 @@
 2. [ ] `gh auth login`（浏览器或 Token）
 3. [ ] `cd ~/owl-agent-line && git status`
 4. [ ] 若还无 commit：见下方「首次提交」
-5. [ ] `gh repo create owl-agent-line --private --source=. --remote=origin --push`
+5. [ ] `gh repo create owl-agent-line --public --source=. --remote=origin --push`（开源；先私有则改 `--private`）
+5b. [ ] 确认根目录有 `LICENSE`（默认 MIT）
 6. [ ] 浏览器打开仓库，确认 `devlogs/` 在
 7. [ ] 把仓库 URL 记进当日 `DEVLOG_*.md`
 
@@ -26,6 +27,16 @@ git -c user.name="你的名字" -c user.email="你的邮箱@example.com" commit 
 ```
 
 （使用 `-c` 仅本次生效，不改全局 git config。）
+
+## 开源与许可证
+
+- 本仓默认 **MIT**（见根目录 `LICENSE`）：允许他人使用、修改、再分发，需保留版权与许可声明。
+- **换许可证**（在首次大量 fork 前尽早定）：
+  - 仍要宽松 + 专利条款 → 改用 **Apache-2.0**
+  - 要求衍生作品也开源 → **GPL-3.0**
+  - 网络服务也必须开源 → **AGPL-3.0**
+- **不要**把 API Key、云主机私钥、内网 IP 密码写进公开仓。
+- 模型文件不进 Git；使用者自行按模型方许可下载。
 
 ## 和四端的关系
 
