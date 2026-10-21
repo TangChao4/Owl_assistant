@@ -63,3 +63,9 @@ Like ChatGPT file cards: artifacts are written under `~/workers/data/runtime/com
 Download URL shape: `/api/download/<id>?token=...` (Content-Disposition attachment).
 
 Restart after code updates: `bash ~/owl-agent-line/scripts/host_offline_agent.sh`
+
+## UI: collapse + Plan mode
+
+- Long messages collapse by default; click **展开全文** / use header **全部展开|全部折叠** (Cursor-like).
+- Role select includes **Plan · 开发计划**: developer planning dialogue with Goal / Assumptions / Plan / Risks / Next.
+- Plan mode always uses the local/LAN LLM when available; confirm before asking to execute/write files.
