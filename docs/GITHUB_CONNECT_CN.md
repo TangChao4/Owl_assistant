@@ -21,11 +21,11 @@
 ## 一次接驳清单
 
 1. [x] 安装 `gh`（本机无 sudo 时：解压到 `~/.local/bin/gh`）
-2. [ ] `gh auth login -h github.com -p https -w`（浏览器或 device code；**与 IP 无关**）
-3. [x] 仓库已有 commits；remote 脚本会自动加
-4. [ ] 一键推送：`~/owl-agent-line/scripts/push_to_github.sh`
-5. [ ] 浏览器打开 `Owl_assistant`，确认 `devlogs/` / `docs/` 在
-6. [ ] 把结果记进当日 `DEVLOG_*.md`
+2. [x] `gh auth login` 已登录 **TangChao4**（HTTPS；**与 IP 无关**）
+3. [x] remote = `https://github.com/TangChao4/Owl_assistant.git`
+4. [x] 首推成功：`scripts/push_to_github.sh` → `main`（覆盖 Initial commit）
+5. [x] 远端已见 `.cursor` / `devlogs` / `docs` / `scripts` …
+6. [x] 已记入 `DEVLOG_20261021.md`
 
 ## 日常推送（推荐脚本）
 

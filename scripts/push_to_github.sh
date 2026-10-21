@@ -57,11 +57,13 @@ fi
 
 echo "推送 $LOCAL_BRANCH → $REMOTE_NAME/$REMOTE_BRANCH （覆盖远端 main）…"
 git fetch "$REMOTE_NAME" "$REMOTE_BRANCH" 2>/dev/null || true
+# HTTP/1.1 在部分网络下比 HTTP/2 更稳（与本机 IP 无关）
+push_opts=(-c http.version=HTTP/1.1)
 if [[ "$FORCE" == "1" ]]; then
   # 用户已确认可覆盖 Owl_assistant 的 Initial commit / main
-  git push -u "$REMOTE_NAME" "HEAD:$REMOTE_BRANCH" --force
+  git "${push_opts[@]}" push -u "$REMOTE_NAME" "HEAD:$REMOTE_BRANCH" --force
 else
-  git push -u "$REMOTE_NAME" "HEAD:$REMOTE_BRANCH" --force-with-lease
+  git "${push_opts[@]}" push -u "$REMOTE_NAME" "HEAD:$REMOTE_BRANCH" --force-with-lease
 fi
 
 echo "完成：https://github.com/TangChao4/Owl_assistant"

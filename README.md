@@ -62,7 +62,7 @@
 | P1 | 本机 Agent → AGX；M1/M2/M3 落地 | 下一步 |
 | P2 | 猫头鹰 NX 部署 | 待做 |
 | P3 | 三端联调 | 待做 |
-| P4 | GitHub → `TangChao4/Owl_assistant` | 脚本就绪；待 `gh auth` 后首推 |
+| P4 | GitHub → `TangChao4/Owl_assistant` | **已首推** `main`；日常用 `./scripts/push_to_github.sh` |
 
 ## 接上 GitHub（本机 → Owl_assistant）
 
