@@ -1,0 +1,39 @@
+# secrets & env
+*.secrets.env
+.env
+.env.*
+!.env.example
+**/COMPANION.secrets.env
+
+# models & weights (never push)
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.onnx
+**/ollama_store/
+**/blobs/
+**/*-partial*
+
+# python / venv
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# large archives
+*.tar.gz
+*.zip
+!docs/**/*.zip
+
+# local runtime
+data/runtime/
+*.log
