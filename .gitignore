@@ -41,3 +41,6 @@ data/runtime/
 .local/
 *.local.env
 agx.secrets*
+
+# Cursor local only (never push)
+.cursor/

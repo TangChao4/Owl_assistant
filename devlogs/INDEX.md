@@ -1,32 +1,33 @@
-# 开发日志与问题索引
+# Devlog and issue index
 
-职责全文：`三机职责分工_猫头鹰_AGX_云端.md`
+Full role split: `ROLE_SPLIT_OWL_AGX_CLOUD.md`
 
-| 日期 | 类型 | 文件 | 设备 | 摘要 |
-|------|------|------|------|------|
-| 2026-10-21 | 职责 | 三机职责分工_猫头鹰_AGX_云端.md | 全部 | v2026-10-21b：四端定责；**本机=第二任务发布台** |
-| 2026-10-21 | 计划 | ../docs/DEV_PHASE_PLAN_CN.md | host/agx | **20B 就绪**；P0 联通→P1 Agent→P2 猫头鹰→P3 联调→P4 GitHub |
-| 2026-10-21 | 考验 | ../docs/CLOUD_EXAM_20261021.md | cloud | 亲自考：环活/防泄过/V6绿；增长停滞；无8788 |
-| 2026-10-21 | 协议 | ../docs/ENDPOINT_PROTOCOL_CN.md | 全部 | TCP 信封 + 端点字典（host/agx/cloud/owl） |
-| 2026-10-21 | README/树 | ../README.md · ../docs/WORKERS_TASK_TREE_CN.md | 全部 | 当前状态入库；工作树扩为双树；DEVLOG强制同步 |
-| 2026-10-21 | GitHub | ../docs/GITHUB_CONNECT_CN.md · ../scripts/push_to_github.sh | host | → TangChao4/Owl_assistant；gh登录；IP无关推送 |
-| 2026-10-21 | 部署 | ../docs/HOST_OFFLINE_AGENT_CN.md · ../scripts/host_offline_agent.sh | host/agx | P1离线Agent：:3000→AGX 20B；policy=local |
-| 2026-10-21 | DEVLOG | DEVLOG_20261021.md | host/agx/owl/cloud | P0过；云端CAPA；TCP协议；日志强制更新约定 |
+| Date | Type | File | Device | Summary |
+|------|------|------|--------|---------|
+| 2026-10-21 | roles | ROLE_SPLIT_OWL_AGX_CLOUD.md | all | v2026-10-21b: four-endpoint roles; **host = second task desk** |
+| 2026-10-21 | plan | ../docs/DEV_PHASE_PLAN.md | host/agx | **20B ready**; P0 link → P1 Agent → P2 Owl → P3 integration → P4 GitHub |
+| 2026-10-21 | exam | ../docs/CLOUD_EXAM_20261021.md | cloud | Hands-on: loops alive / anti-leak pass / V6 green; growth stalled; no 8788 |
+| 2026-10-21 | protocol | ../docs/ENDPOINT_PROTOCOL.md | all | TCP envelope + endpoint registry (host/agx/cloud/owl) |
+| 2026-10-21 | README/tree | ../README.md · ../docs/WORKERS_TASK_TREE.md | all | Current status checked in; dual task trees; DEVLOG sync required |
+| 2026-10-21 | GitHub | ../docs/GITHUB_CONNECT.md · ../scripts/push_to_github.sh | host | → TangChao4/Owl_assistant; gh login; IP-independent push |
+| 2026-10-21 | deploy | ../docs/HOST_OFFLINE_AGENT.md · ../scripts/host_offline_agent.sh | host/agx | P1 offline Agent: :3000 → AGX 20B; policy=local |
+| 2026-10-21 | i18n | ../docs/devlog-auto-update.mdc · README | all | English-only repo; .cursor not on GitHub |
+| 2026-10-21 | DEVLOG | DEVLOG_20261021.md | host/agx/owl/cloud | P0 pass; cloud CAPA; TCP protocol; mandatory log-update rule |
 
-## 未关闭 ISSUE
-| 编号 | 严重度 | 设备 | 标题 | 状态 |
-|------|--------|------|------|------|
-| ISSUE-20261018-01 | P2 | owl/usb | Owl optional 模型 partial ~4.4G 未完成 | open |
-| ISSUE-20261018-02 | P1 | host | Docker 镜像拉取失败（open-webui/n8n），Agent 完整栈未起 | open |
-| ISSUE-20261020-01 | P1 | agx/net | AGX IP=192.168.90.3（以太网）已录入 | closed |
-| ISSUE-20261018-03 | P1 | cloud | 云端 CPU 环存活但课程/图风增长停滞；8788 LLM 未装备 | open |
-| ISSUE-20261021-01 | P2 | agx | gpt-oss:20b + 局域网 :11434 已通 | closed |
+## Open ISSUES
+| ID | Severity | Device | Title | Status |
+|----|----------|--------|-------|--------|
+| ISSUE-20261018-01 | P2 | owl/usb | Owl optional model partial ~4.4G incomplete | open |
+| ISSUE-20261018-02 | P1 | host | Docker image pull failed (open-webui/n8n); full Agent stack not up | open |
+| ISSUE-20261020-01 | P1 | agx/net | AGX IP=192.168.90.3 (Ethernet) recorded | closed |
+| ISSUE-20261018-03 | P1 | cloud | Cloud CPU loops alive but course/style growth stalled; 8788 LLM not equipped | open |
+| ISSUE-20261021-01 | P2 | agx | gpt-oss:20b + LAN :11434 working | closed |
 
-## 写法约定（强制自动更新）
-- **实质性改动或重点决策完成后立刻写日志**，不要等用户再催：
-  1. 追加/新建当日 `DEVLOG_YYYYMMDD.md`
-  2. 本表加/改一行（类型可写：DEVLOG / 协议 / 考验 / 计划 / 职责）
-  3. 阶段或端点状态变了 → 同步 `README.md`「当前状态」与 `docs/WORKERS_TASK_TREE_CN.md`
-- 新问题：`issues/ISSUE_YYYYMMDD_短标题.md`，并挂到「未关闭 ISSUE」。
-- 关闭问题时改状态为 closed，并在对应 DEVLOG 写验证命令。
-- 重点沟通尽量带 `mode=M1|M2|M3` 与 TCP `kind`（见 `docs/ENDPOINT_PROTOCOL_CN.md`）。
+## Writing rules (mandatory auto-update)
+- **Write the log immediately after substantive changes or key decisions** — do not wait for the user to ask:
+  1. Append/create today's `DEVLOG_YYYYMMDD.md`
+  2. Add/update one row in this table (type may be: DEVLOG / protocol / exam / plan / roles)
+  3. If phase or endpoint status changed → sync `README.md` "Current status" and `docs/WORKERS_TASK_TREE.md`
+- New issues: `issues/ISSUE_YYYYMMDD_short_title.md`, and list under "Open ISSUES".
+- When closing an issue, set status to closed and record verification commands in the matching DEVLOG.
+- Prefer `mode=M1|M2|M3` and TCP `kind` on important communication (see `docs/ENDPOINT_PROTOCOL.md`).

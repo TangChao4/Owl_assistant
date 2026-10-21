@@ -1,0 +1,24 @@
+---
+description: After substantive changes or key decisions, auto-update DEVLOG, INDEX, and README/task tree when needed
+alwaysApply: true
+---
+
+# DEVLOG auto-update (required)
+
+After any of the following on this repo or the four endpoints (owl / host / agx / cloud), update logs in the **same reply** — do not wait for the user to ask:
+
+- Substantive code / script / config changes
+- Endpoint connectivity, model readiness, service start/stop acceptance results
+- Key decisions (roles, phases, collab modes M1/M2/M3, protocol, cleanup scope)
+- Hands-on exams or capability conclusions on cloud / AGX / host
+
+## Required steps
+
+1. Append today's `devlogs/DEVLOG_YYYYMMDD.md` (create from `DEVLOG_TEMPLATE.md` if missing)
+2. Sync one row in `devlogs/INDEX.md` (date / type / file / device / summary)
+3. If phase or endpoint status changed: update `README.md` "Current status" and related rows in `docs/WORKERS_TASK_TREE.md`
+4. Prefer clear fields: `mode=M1|M2|M3`, device, acceptance command summary (never secrets)
+
+## Skip when
+
+Pure Q&A, no repo edits, and no change to endpoint/phase conclusions.
