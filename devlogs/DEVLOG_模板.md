@@ -1,10 +1,14 @@
 # DEVLOG_YYYYMMDD
 
+> **强制**：实质性改动或重点决策完成后立刻追加本日日志，并在 `INDEX.md` 加/改一行。  
+> 沟通可用 TCP 信封：`[TCP v1] from=… to=… mode=M1|M2|M3 pri=… kind=TASK|STATUS|CAPA|RESULT|BLOCKER|ASK`
+
 - **日期**：YYYY-MM-DD
 - **作者**：
 - **关联 ISSUE**：（无则写无）
 - **设备**：（勾选）`owl_nx` / `host` / `agx` / `cloud`
 - **任务入口**：猫头鹰 / **本机第二任务台** / 直调 AGX / 云端自转
+- **模式**：`M1` / `M2` / `M3` / 组合
 
 ## 今日目标
 - 
@@ -39,3 +43,9 @@
 
 ## 风险 / 注意
 - 
+
+## 收工检查
+- [ ] 本日 DEVLOG 已写实质内容
+- [ ] `devlogs/INDEX.md` 已同步
+- [ ] 若改了阶段/端点状态：README「当前状态」或工作树已改
+
