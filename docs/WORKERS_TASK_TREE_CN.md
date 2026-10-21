@@ -30,7 +30,9 @@ owl-agent-line/
 │   ├── 三机职责分工_猫头鹰_AGX_云端.md
 │   └── 本机任务清单_速查.md  ← host A–F + 模式
 ├── issues/                   ← ISSUE 单
-├── scripts/                  ← owl_pack / agent 下载辅助
+├── scripts/
+│   ├── push_to_github.sh     ← 一键推 Owl_assistant（不绑本机 IP）★
+│   ├── owl_pack / …
 └── .cursor/rules/            ← 项目规则（含 DEVLOG 自动更新）
 ```
 
@@ -41,6 +43,7 @@ owl-agent-line/
 | 今晚阶段 | `docs/DEV_PHASE_PLAN_CN.md` |
 | 云端能力 | `docs/CLOUD_EXAM_20261021.md` |
 | AGX 调用 | `docs/AGX_ENDPOINT_CN.md` · `http://192.168.90.3:11434` |
+| 推 GitHub | `scripts/push_to_github.sh` · `docs/GITHUB_CONNECT_CN.md` |
 | 写/查日志 | `devlogs/INDEX.md` · 当日 `DEVLOG_*.md` |
 
 ---

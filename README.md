@@ -62,65 +62,36 @@
 | P1 | 本机 Agent → AGX；M1/M2/M3 落地 | 下一步 |
 | P2 | 猫头鹰 NX 部署 | 待做 |
 | P3 | 三端联调 | 待做 |
-| P4 | GitHub 公开推送 | 待做 |
+| P4 | GitHub → `TangChao4/Owl_assistant` | 脚本就绪；待 `gh auth` 后首推 |
 
-## 接上 GitHub（本机执行）
+## 接上 GitHub（本机 → Owl_assistant）
 
-### 1. 安装并登录
+远端已建好：**https://github.com/TangChao4/Owl_assistant**（`main` · Public · MIT）
+
+**本机 IP 会变也不影响推送**——鉴权是 `gh` 账号登录态，不绑 IP。局域网 AGX/猫头鹰 IP 变了另改文档即可。
+
+### 1. 登录一次（浏览器）
 
 ```bash
-sudo apt update && sudo apt install -y gh git
-gh auth login
-# 选 GitHub.com → HTTPS → Login with browser（或 token）
+export PATH="$HOME/.local/bin:$PATH"   # 本机 gh 装在这里
+gh auth login -h github.com -p https -w
 ```
 
-### 2. 确认本仓库
+### 2. 日常一键推送（覆盖远端 main）
 
 ```bash
 cd ~/owl-agent-line
-git status
+./scripts/push_to_github.sh "docs: 更新开发日志"
 ```
 
-### 3. 创建远程并推送（开源用公开库）
+详情：`docs/GITHUB_CONNECT_CN.md`
+
+### 3. 与 U 盘日志同步（可选）
+
+U 盘：`/media/ubuntu/THIS/Owl_Secretary/09_DevLogs/` · 本仓库：`devlogs/`
 
 ```bash
-# 在已 login 的前提下（公开开源）：
-gh repo create owl-agent-line --public --source=. --remote=origin --push
-
-# 若暂时不想公开，可先：
-# gh repo create owl-agent-line --private --source=. --remote=origin --push
-# 以后再在 GitHub 仓库 Settings → Change visibility → Public
-```
-
-若仓库已在网页上建好：
-
-```bash
-git remote add origin git@github.com:<你的用户名>/owl-agent-line.git
-# 或 HTTPS：
-# git remote add origin https://github.com/<你的用户名>/owl-agent-line.git
-git push -u origin HEAD
-```
-
-### 4. 日常同步
-
-```bash
-cd ~/owl-agent-line
-# 改完 devlogs / docs 后：
-git add -A
-git status
-git commit -m "docs: 更新开发日志"
-git push
-```
-
-### 5. 与 U 盘日志同步（可选）
-
-U 盘：`/media/ubuntu/THIS/Owl_Secretary/09_DevLogs/`  
-本仓库：`devlogs/`
-
-```bash
-# U盘 → 仓库（写完日志后）
 cp -a /media/ubuntu/THIS/Owl_Secretary/09_DevLogs/*.md ~/owl-agent-line/devlogs/
-# 仓库 → U盘（从 Git 拉下来后）
 cp -a ~/owl-agent-line/devlogs/*.md /media/ubuntu/THIS/Owl_Secretary/09_DevLogs/
 ```
 
