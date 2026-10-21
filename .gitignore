@@ -37,3 +37,7 @@ Thumbs.db
 # local runtime
 data/runtime/
 *.log
+
+.local/
+*.local.env
+agx.secrets*
