@@ -13,7 +13,7 @@
 | 端 | 状态 | 要点 |
 |----|------|------|
 | **猫头鹰** `owl` | 待部署 | U 盘 5 模型包完整；待拷 NX ext4 |
-| **本机** `host` | 编排就绪 | 第二任务台；下一优先 **P1** 接 Agent→AGX |
+| **本机** `host` | **离线 Agent 已起** | `:3000` webapp · `policy=local` · → AGX `gpt-oss:20b` |
 | **AGX** `agx` | **P0 已过** | `192.168.90.3:11434` · `gpt-oss:20b` 局域网可调 |
 | **云端** `cloud` | 环活、增长停滞 | 亲自考验：防泄过 / V6 绿；无 `:8788` LLM |
 
@@ -59,7 +59,7 @@
 | 阶段 | 内容 | 状态 |
 |------|------|------|
 | P0 | AGX 联通 + 20B 验收 | **完成** |
-| P1 | 本机 Agent → AGX；M1/M2/M3 落地 | 下一步 |
+| P1 | 本机离线 Agent → AGX | **P1-1/2 完成**；见 `docs/HOST_OFFLINE_AGENT_CN.md` |
 | P2 | 猫头鹰 NX 部署 | 待做 |
 | P3 | 三端联调 | 待做 |
 | P4 | GitHub → `TangChao4/Owl_assistant` | **已首推** `main`；日常用 `./scripts/push_to_github.sh` |

@@ -10,6 +10,7 @@
 | 2026-10-21 | 协议 | ../docs/ENDPOINT_PROTOCOL_CN.md | 全部 | TCP 信封 + 端点字典（host/agx/cloud/owl） |
 | 2026-10-21 | README/树 | ../README.md · ../docs/WORKERS_TASK_TREE_CN.md | 全部 | 当前状态入库；工作树扩为双树；DEVLOG强制同步 |
 | 2026-10-21 | GitHub | ../docs/GITHUB_CONNECT_CN.md · ../scripts/push_to_github.sh | host | → TangChao4/Owl_assistant；gh登录；IP无关推送 |
+| 2026-10-21 | 部署 | ../docs/HOST_OFFLINE_AGENT_CN.md · ../scripts/host_offline_agent.sh | host/agx | P1离线Agent：:3000→AGX 20B；policy=local |
 | 2026-10-21 | DEVLOG | DEVLOG_20261021.md | host/agx/owl/cloud | P0过；云端CAPA；TCP协议；日志强制更新约定 |
 
 ## 未关闭 ISSUE

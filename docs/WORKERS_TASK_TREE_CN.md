@@ -32,6 +32,7 @@ owl-agent-line/
 ├── issues/                   ← ISSUE 单
 ├── scripts/
 │   ├── push_to_github.sh     ← 一键推 Owl_assistant（不绑本机 IP）★
+│   ├── host_offline_agent.sh ← 本机离线 Agent → AGX 20B ★
 │   ├── owl_pack / …
 └── .cursor/rules/            ← 项目规则（含 DEVLOG 自动更新）
 ```
@@ -41,6 +42,7 @@ owl-agent-line/
 | 四端怎么说话 | `docs/ENDPOINT_PROTOCOL_CN.md` |
 | 选 M1/M2/M3 | `docs/COLLAB_MODES_CN.md` · `devlogs/本机任务清单_速查.md` |
 | 今晚阶段 | `docs/DEV_PHASE_PLAN_CN.md` |
+| **本机离线 Agent** | `docs/HOST_OFFLINE_AGENT_CN.md` · `scripts/host_offline_agent.sh` |
 | 云端能力 | `docs/CLOUD_EXAM_20261021.md` |
 | AGX 调用 | `docs/AGX_ENDPOINT_CN.md` · `http://192.168.90.3:11434` |
 | 推 GitHub | `scripts/push_to_github.sh` · `docs/GITHUB_CONNECT_CN.md` |
