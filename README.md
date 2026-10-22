@@ -41,6 +41,7 @@ Details: `devlogs/ROLE_SPLIT_OWL_AGX_CLOUD.md` · Host checklist: `devlogs/HOST_
 | [`docs/CLOUD_EXAM_20261021.md`](docs/CLOUD_EXAM_20261021.md) | Cloud live exam report |
 | [`docs/AGX_ENDPOINT.md`](docs/AGX_ENDPOINT.md) | AGX endpoint and connectivity |
 | [`docs/HOST_OFFLINE_AGENT.md`](docs/HOST_OFFLINE_AGENT.md) | Host offline agent → AGX |
+| [`docs/CLOUD_AGENT_M3.md`](docs/CLOUD_AGENT_M3.md) | Host Agent → cloud SSH (supervise / pipeline) |
 | [`docs/WORKERS_TASK_TREE.md`](docs/WORKERS_TASK_TREE.md) | Task tree (find files) |
 | [`docs/devlog-auto-update.mdc`](docs/devlog-auto-update.mdc) | DEVLOG auto-update policy |
 | [`devlogs/INDEX.md`](devlogs/INDEX.md) | Devlog and ISSUE index |

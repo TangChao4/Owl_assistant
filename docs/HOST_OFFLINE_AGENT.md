@@ -64,6 +64,16 @@ Download URL shape: `/api/download/<id>?token=...` (Content-Disposition attachme
 
 Restart after code updates: `bash ~/owl-agent-line/scripts/host_offline_agent.sh`
 
+## Cloud M3 (supervise + pipeline)
+
+Host Agent talks to **39.96.82.193** via SSH (`lib/companion/cloud_bridge.py`):
+
+- Chat: `/cloud status` · `/cloud supervise` · `/cloud repair` · `/cloud pipeline`
+- UI header button **云**
+- Background: `scripts/host_cloud_supervise_loop.sh --once`
+
+Full doc: [`CLOUD_AGENT_M3.md`](CLOUD_AGENT_M3.md)
+
 ## UI: collapse + Plan mode
 
 - Long messages collapse by default; click **展开全文** / use header **全部展开|全部折叠** (Cursor-like).

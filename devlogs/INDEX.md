@@ -13,6 +13,7 @@ Full role split: `ROLE_SPLIT_OWL_AGX_CLOUD.md`
 | 2026-10-21 | deploy | ../docs/HOST_OFFLINE_AGENT.md · ../scripts/host_offline_agent.sh | host/agx | P1 offline Agent: :3000 → AGX 20B; policy=local |
 | 2026-10-21 | i18n | ../docs/devlog-auto-update.mdc · README | all | English-only repo; .cursor not on GitHub |
 | 2026-10-21 | feature | ../docs/HOST_OFFLINE_AGENT.md | host | File export + clickable download links in :3000 UI |
+| 2026-10-22 | feature | ../docs/CLOUD_AGENT_M3.md | host/cloud | Agent SSH M3: supervise + pipeline on cloud |
 | 2026-10-21 | feature | ../docs/HOST_OFFLINE_AGENT.md | host | Plan mode + collapsible chat UI |
 | 2026-10-21 | DEVLOG | DEVLOG_20261021.md | host/agx/owl/cloud | P0 pass; cloud CAPA; TCP protocol; mandatory log-update rule |
 
