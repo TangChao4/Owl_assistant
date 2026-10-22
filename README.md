@@ -8,14 +8,14 @@ Ops and development log line for Owl assistant, host task desk, AGX strong infer
 > **Does not include** model weights (GGUF / Ollama blobs). Weights stay on host disk, USB, or AGX.  
 > Third-party model weights keep their original licenses (Qwen / Ollama model cards, etc.).
 
-## Current status (2026-10-21)
+## Current status (2026-10-22)
 
 | Endpoint | Status | Notes |
 |----------|--------|-------|
-| **Owl** `owl` | Pending deploy | USB 5-model pack ready; copy to NX ext4 next |
-| **Host** `host` | **Offline agent up** | `:3000` webapp · `policy=local` · → AGX `gpt-oss:20b` |
-| **AGX** `agx` | **P0 passed** | `192.168.90.3:11434` · `gpt-oss:20b` on LAN |
-| **Cloud** `cloud` | Loops alive, growth stalled | Live exam: anti-leak pass / V6 green; no `:8788` LLM |
+| **Owl** `owl` | **P2 host bridge ready** | `docs/OWL_NX_DEPLOY.md` · `/owl` · `/todo` · NX online → bootstrap |
+| **Host** `host` | **Offline agent up** | `workers` ~7G agent-only · deploy zip on USB |
+| **AGX** `agx` | **P0 passed** | `192.168.90.3:11434` · `gpt-oss:20b` + `deepseek-r1:14b` · USB research pack staged read-only |
+| **Cloud** `cloud` | M3 bridge OK; growth partial | Probe 2026-10-22: loops OK; research +414 / style +56 vs 10-21; pipeline exam scores flat; no `:8788` LLM |
 
 Collab modes: **M1** host↔AGX · **M2** AGX solo · **M3** cloud participate.  
 Unified messaging: **TCP v1** envelope (see protocol doc).
@@ -31,6 +31,14 @@ Unified messaging: **TCP v1** envelope (see protocol doc).
 
 Details: `devlogs/ROLE_SPLIT_OWL_AGX_CLOUD.md` · Host checklist: `devlogs/HOST_TASK_CHECKLIST.md`
 
+## Host quick start
+
+```bash
+bash ~/owl-agent-line/scripts/owl_agent_up.sh
+```
+
+Opens **http://127.0.0.1:8765/** (launch dashboard), starts Agent + cloud supervise when reachable, and links to **:3000** chat.
+
 ## Key docs
 
 | Doc | Purpose |
@@ -40,6 +48,7 @@ Details: `devlogs/ROLE_SPLIT_OWL_AGX_CLOUD.md` · Host checklist: `devlogs/HOST_
 | [`docs/DEV_PHASE_PLAN.md`](docs/DEV_PHASE_PLAN.md) | Phases P0–P4 |
 | [`docs/CLOUD_EXAM_20261021.md`](docs/CLOUD_EXAM_20261021.md) | Cloud live exam report |
 | [`docs/AGX_ENDPOINT.md`](docs/AGX_ENDPOINT.md) | AGX endpoint and connectivity |
+| [`docs/AGENT_USER_GUIDE.md`](docs/AGENT_USER_GUIDE.md) | **Agent 使用指南**（启动、UI、命令） |
 | [`docs/HOST_OFFLINE_AGENT.md`](docs/HOST_OFFLINE_AGENT.md) | Host offline agent → AGX |
 | [`docs/CLOUD_AGENT_M3.md`](docs/CLOUD_AGENT_M3.md) | Host Agent → cloud SSH (supervise / pipeline) |
 | [`docs/WORKERS_TASK_TREE.md`](docs/WORKERS_TASK_TREE.md) | Task tree (find files) |
@@ -63,7 +72,7 @@ Template: `devlogs/DEVLOG_TEMPLATE.md` · Policy: `docs/devlog-auto-update.mdc`
 | Phase | Scope | Status |
 |-------|-------|--------|
 | P0 | AGX connect + 20B acceptance | **Done** |
-| P1 | Host offline Agent → AGX | **P1-1/2 done** · see `docs/HOST_OFFLINE_AGENT.md` |
+| P1 | Host offline Agent → AGX + cloud M3 | **P1 mostly done** · `owl_agent_up.sh` · `endpoint_smoke.sh` |
 | P2 | Owl NX deploy | Pending |
 | P3 | Multi-endpoint integration | Pending |
 | P4 | GitHub → `TangChao4/Owl_assistant` | **First push done** · `./scripts/push_to_github.sh` |

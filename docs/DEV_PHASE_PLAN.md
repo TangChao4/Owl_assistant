@@ -44,14 +44,14 @@ curl -s "$AGX/api/generate" -d '{"model":"gpt-oss:20b","prompt":"Introduce yours
 
 **Goal**: M1 collaboration usable; M2 solo has a playbook; M3 cloud is queryable and can participate.
 
-| ID | Task | Mode | Acceptance |
-|----|------|------|------------|
-| P1-1 | Start light Agent (host) | M1 | `:3000` or WebUI opens |
-| P1-2 | Agent strong model → `http://192.168.90.3:11434` / `gpt-oss:20b` | M1 | chat goes to AGX |
-| P1-3 | Optional host 7B for light Q&A | M1 | light/heavy split |
-| P1-4 | Docs/scripts: AGX solo (tmux / `ollama run` / return results) | M2 | one independent run via SSH on board |
-| P1-5 | Host cloud probe; when needed “cloud task + AGX fill-in inference” | M3±M1 | progress readable; hard spots can go to AGX |
-| P1-6 | DEVLOG labels `mode=M1/M2/M3` | all | INDEX searchable |
+| ID | Task | Mode | Acceptance | Status |
+|----|------|------|------------|--------|
+| P1-1 | Start light Agent (host) | M1 | `:3000` or WebUI opens | **done** |
+| P1-2 | Agent strong model → `http://192.168.90.3:11434` / `gpt-oss:20b` | M1 | chat goes to AGX | **done** |
+| P1-3 | Optional host 7B for light Q&A | M1 | light/heavy split | open (use `AGX_OLLAMA_BASE=http://127.0.0.1:11434/v1`) |
+| P1-4 | Docs/scripts: AGX solo (tmux / `ollama run` / return results) | M2 | one independent run via SSH on board | **done** · `scripts/agx_m2_run.sh` |
+| P1-5 | Host cloud probe; when needed “cloud task + AGX fill-in inference” | M3±M1 | progress readable; hard spots can go to AGX | **done** · `/cloud` + `cloud_bridge` |
+| P1-6 | DEVLOG labels `mode=M1/M2/M3` | all | INDEX searchable | ongoing |
 
 **Routing rules:**
 - Secretary / short answers → owl or host 7B  
@@ -62,15 +62,15 @@ curl -s "$AGX/api/generate" -d '{"model":"gpt-oss:20b","prompt":"Introduce yours
 
 ## Phase 2 — Owl secretary on NX (1–2 days, can parallel Phase 1)
 
-**Goal**: First interaction entry is live.
+**Goal**: First interaction entry is live. Guide: `docs/OWL_NX_DEPLOY.md`
 
-| ID | Task | Notes | Acceptance |
-|----|------|-------|------------|
-| P2-1 | Copy USB `ollama_store` wholesale onto NX **ext4** | Do not run the service on exFAT | `ollama list` shows 5 models |
-| P2-2 | Start Ollama on NX; primary `qwen3:4b` | | host dialogue works |
-| P2-3 | Minimal secretary: reminders, todos, brief templates | start filling `05_Agent_System` | demo 3 scenarios |
-| P2-4 | Heavy-task forward: owl → host Agent or direct AGX | | forward has receipt |
-| P2-5 | (Optional) speech / expression later | see SPEECH guide | do not block main path |
+| ID | Task | Notes | Acceptance | Status |
+|----|------|-------|------------|--------|
+| P2-1 | Copy USB `ollama_store` onto NX **ext4** | `owl_nx_sync_models.sh` | `ollama list` shows 5 models | ready (NX LAN) |
+| P2-2 | Start Ollama on NX; primary `qwen3:4b` | `owl_nx_bootstrap.sh` | dialogue on NX | ready (NX LAN) |
+| P2-3 | Secretary todos/reminders | `/todo` `/remind` | 3 scenarios | **host done** |
+| P2-4 | Forward heavy → AGX | `/forward agx` + receipt JSONL | TCP receipt | **host done** |
+| P2-5 | Speech / expression | SPEECH guide | optional | open |
 
 ---
 
@@ -83,6 +83,8 @@ curl -s "$AGX/api/generate" -d '{"model":"gpt-oss:20b","prompt":"Introduce yours
 | P3-3 | user → host task desk → AGX / workers | can issue tasks without owl |
 | P3-4 | host checks cloud progress | `cloud_status_probe` returns results |
 | P3-5 | Write `DEVLOG` + close related ISSUEs (IP, 20B) | INDEX updated |
+
+**P3 partial (2026-10-22, NX off LAN):** P3-3/P3-4 **passed** on host (`endpoint_smoke` 4/4, `/api/cloud/probe`). P3-1/P3-2 **blocked** until Owl SSH. See `docs/AGENT_CLOUD_GAP_20261022.md`.
 
 ---
 

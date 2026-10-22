@@ -10,15 +10,32 @@
 | UI | companion webapp `http://<host>:3000/?token=…` |
 | Policy | `COMPANION_LLM_POLICY=local` (**never go to cloud**) |
 | Inference | `COMPANION_LOCAL_LLM_BASE=http://192.168.90.3:11434/v1` |
-| Model | `gpt-oss:20b` |
+| Chat model | `COMPANION_MODEL=gpt-oss:20b` |
+| Plan / Docs model | `ASSISTANT_MODEL=deepseek-r1:14b` (AGX; reasoning without using 20B for every plan) |
 | Host fallback Ollama | `127.0.0.1:11434` · `qwen3:8b` / `qwen3:14b` |
 
 Token lives in `~/workers/data/runtime/COMPANION.secrets.env` as `COMPANION_CHAT_TOKEN` (do not commit or share in chat).
 
+## Launch dashboard (recommended)
+
+```bash
+# Probe + start connectable pieces + open http://127.0.0.1:8765/
+bash ~/owl-agent-line/scripts/owl_agent_up.sh
+
+# Dashboard only (no auto-start)
+bash ~/owl-agent-line/scripts/owl_agent_up.sh --ui
+
+# Terminal status only
+bash ~/owl-agent-line/scripts/owl_agent_up.sh --cli
+```
+
+Cards: **AGX Ollama** · **Host Ollama fallback** · **Agent :3000** · **Cloud M3 SSH** · **cloud supervise loop**.  
+Button **启动可用组件** runs `host_offline_agent.sh` (Agent + M3 loop when SSH key is present).
+
 ## One-shot start / stop
 
 ```bash
-# Start / restart
+# Start / restart (same as dashboard button)
 bash ~/owl-agent-line/scripts/host_offline_agent.sh
 
 # AGX IP changed:
@@ -45,6 +62,27 @@ Verified in person: AGX `/v1/chat/completions` works; engine `/llm` and natural-
 - **AGX LAN IP changes**: set `AGX_OLLAMA_BASE` or secrets `COMPANION_LOCAL_LLM_BASE`, then rerun the script.
 - Docker Open WebUI (Claude-first) is **not** this offline path; use the light webapp offline.
 - If `safe_mode` is left on by mistake it blocks chat; the start script clears it when sqlite is healthy.
+
+## Ops panel (自洽机 · 云 · 记忆)
+
+Header **自洽机** / **云** / **记忆** open a **modal panel** (tabs + refresh). They no longer inject long blocks into chat.
+
+Status API uses fast deterministic text (`polish=0` by default). Optional: `/api/status_snap?polish=1`.
+
+## File workspace (host · AGX · Owl)
+
+Click **文件** in the UI — opens a **workspace panel** (no longer spamming duplicate export cards in chat).
+
+| Tab | Purpose |
+|-----|---------|
+| **工作区** | Browse / preview / edit under allowed roots |
+| **导出下载** | Sandbox exports from `/write` / chat code fences |
+
+Endpoints: **host** (default roots: `~/workers`, home) · **agx** (`ssh agx`, `/home/ubuntu`) · **owl** (set `COMPANION_FS_OWL_SSH=ubuntu@<nx-ip>` in secrets).
+
+Writes require **Allow write** in the panel (or chat: `确认写入 <grant_id>` after `/fs write …`).
+
+Chat: `/fs help` · `/fs list host …` · `/fs read agx …` · `/fs write host /path \| content`
 
 ## File exports (download links)
 
@@ -73,6 +111,17 @@ Host Agent talks to **39.96.82.193** via SSH (`lib/companion/cloud_bridge.py`):
 - Background: `scripts/host_cloud_supervise_loop.sh --once`
 
 Full doc: [`CLOUD_AGENT_M3.md`](CLOUD_AGENT_M3.md)
+
+## Plan mode (P1)
+
+- Role **Plan · 开发计划** uses **`ASSISTANT_MODEL`** on AGX (e.g. `deepseek-r1:14b`); Chat uses **`COMPANION_MODEL`** (e.g. `gpt-oss:20b`). Higher `max_tokens`, 180s client timeout, **auto-retry** if headings-only.
+- User-facing walkthrough: [`AGENT_USER_GUIDE.md`](AGENT_USER_GUIDE.md)
+- Tune via env: `COMPANION_PLAN_MAX_TOKENS`, `COMPANION_PLAN_TIMEOUT_SEC`, `COMPANION_PLAN_TEMPERATURE`.
+
+## File workspace UX (P1)
+
+- **导出下载** tab hides endpoint/path chrome; browse tab has **过滤文件名** search.
+- Overlays set `aria-hidden` when closed.
 
 ## UI: collapse + Plan mode
 

@@ -7,6 +7,8 @@ WORKERS="${WORKERS:-$HOME/workers}"
 SECRETS="$WORKERS/data/runtime/COMPANION.secrets.env"
 LOG="$WORKERS/data/runtime/companion_webapp.log"
 PIDFILE="$WORKERS/data/runtime/companion_services/webapp.pid"
+CLOUD_SUP_PIDFILE="$WORKERS/data/runtime/companion_services/host_cloud_supervise.pid"
+OWL_AGENT_LINE="${OWL_AGENT_LINE:-$HOME/owl-agent-line}"
 AGX_BASE="${AGX_OLLAMA_BASE:-http://192.168.90.3:11434/v1}"
 MODEL="${AGX_MODEL:-gpt-oss:20b}"
 PORT="${COMPANION_WEBUI_PORT:-3000}"
@@ -81,3 +83,27 @@ echo "PID=$(cat "$PIDFILE")"
 curl -sf --max-time 3 "http://127.0.0.1:${PORT}/api/healthz" | head -c 200; echo
 echo "Open: http://127.0.0.1:${PORT}/?token=${TOKEN:0:4}... (full token in secrets)"
 echo "Mode: M1 offline · provider should be local-openai-compatible · model=$MODEL"
+
+# M3: optional host-side cloud supervise loop (SSH → cloud alpha_supervise)
+if [[ "${CLOUD_SUPERVISE_LOOP:-1}" == "1" ]] && [[ -x "$OWL_AGENT_LINE/scripts/host_cloud_supervise_loop.sh" ]]; then
+  if "$WORKERS/.venv/bin/python" -c "from lib.companion import cloud_bridge as c; raise SystemExit(0 if c.bridge_ready() else 1)" 2>/dev/null; then
+    if [[ -f "$CLOUD_SUP_PIDFILE" ]]; then
+      oldc=$(cat "$CLOUD_SUP_PIDFILE" || true)
+      if [[ -n "${oldc:-}" ]] && kill -0 "$oldc" 2>/dev/null; then
+        kill "$oldc" || true
+        sleep 1
+      fi
+    fi
+    nohup env CLOUD_SUPERVISE_SEC="${CLOUD_SUPERVISE_SEC:-300}" \
+      bash "$OWL_AGENT_LINE/scripts/host_cloud_supervise_loop.sh" \
+      >>"$WORKERS/data/runtime/companion_services/host_cloud_supervise.log" 2>&1 &
+    echo $! >"$CLOUD_SUP_PIDFILE"
+    echo "M3 cloud supervise loop PID=$(cat "$CLOUD_SUP_PIDFILE") interval=${CLOUD_SUPERVISE_SEC:-300}s"
+  else
+    echo "M3 cloud supervise: skipped (SSH bridge not ready)"
+  fi
+fi
+
+if [[ "${COMPANION_CLOUD_TUNNEL:-0}" == "1" ]] && [[ -x "$OWL_AGENT_LINE/scripts/host_cloud_companion_tunnel.sh" ]]; then
+  bash "$OWL_AGENT_LINE/scripts/host_cloud_companion_tunnel.sh" start || echo "Cloud tunnel: start failed (see cloud_tunnel.log)"
+fi

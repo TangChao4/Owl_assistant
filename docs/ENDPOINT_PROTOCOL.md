@@ -146,4 +146,4 @@ ssh -i ~/.ssh/workers_cloud_ed25519 root@39.96.82.193 \
 | `agx` | 20B available on LAN |
 | `cloud` | loops alive, anti-leak passed, V6 green; growth stalled; no local LLM |
 | `host` | orchestration seat; Agent wiring is next priority |
-| `owl` | models on USB; NX deploy not finished |
+| `owl` | host bridge P2-3/4 done; NX deploy scripts ready; set `COMPANION_OWL_SSH` |

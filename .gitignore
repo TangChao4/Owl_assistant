@@ -15,6 +15,9 @@
 **/blobs/
 **/*-partial*
 
+# local USB extract (research pack staging)
+.staging/
+
 # python / venv
 .venv/
 venv/

@@ -1,0 +1,47 @@
+{
+  "protocol": "sealed_research_exam_v1",
+  "updated": "2026-10-22",
+  "purpose": "Reproduce domain code + data capability; independent of SFT/training.",
+  "tracks": {
+    "code_repair": "Multi-file bug fix; sandbox execution; initial candidate MUST fail host tests.",
+    "embodied_repro": "Simulation-only algorithm reproduction vs frozen reference metrics.",
+    "data_repro": "NX-style evidence / timeseries handling without hardware IO."
+  },
+  "tasks": [
+    {
+      "task_id": "CR-001",
+      "track": "code_repair",
+      "title": "Python tracking RMSE + utils (2-file)",
+      "families": ["perception", "numerics"],
+      "verified": true
+    },
+    {
+      "task_id": "CR-002",
+      "track": "code_repair",
+      "title": "Python 1D Kalman predict/update split (2-file)",
+      "families": ["filtering", "embodied"],
+      "verified": true
+    },
+    {
+      "task_id": "ER-001",
+      "track": "embodied_repro",
+      "title": "Constant-velocity Kalman RMSE on synthetic dropout stream",
+      "families": ["filtering", "embodied"],
+      "verified": true
+    },
+    {
+      "task_id": "ER-002",
+      "track": "embodied_repro",
+      "title": "2R planar forward kinematics batch",
+      "families": ["kinematics", "embodied"],
+      "verified": true
+    },
+    {
+      "task_id": "DR-001",
+      "track": "data_repro",
+      "title": "NX manifest JSONL validation (hash + timebase)",
+      "families": ["data", "nx_contract"],
+      "verified": true
+    }
+  ]
+}

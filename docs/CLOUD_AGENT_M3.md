@@ -45,12 +45,17 @@ UI: header button **云** → cloud STATUS text.
 
 ## Background supervise (optional)
 
+`scripts/host_offline_agent.sh` starts the loop automatically when the SSH key is present (`CLOUD_SUPERVISE_LOOP=1`, default). PID: `~/workers/data/runtime/companion_services/host_cloud_supervise.pid`.
+
 ```bash
 # One shot
 bash ~/owl-agent-line/scripts/host_cloud_supervise_loop.sh --once
 
 # Loop every 300s (foreground)
 CLOUD_SUPERVISE_SEC=300 bash ~/owl-agent-line/scripts/host_cloud_supervise_loop.sh
+
+# Disable auto-start with Agent
+CLOUD_SUPERVISE_LOOP=0 bash ~/owl-agent-line/scripts/host_offline_agent.sh
 ```
 
 Log: `~/workers/data/runtime/companion_services/host_cloud_supervise.log`

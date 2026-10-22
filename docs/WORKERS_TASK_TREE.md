@@ -1,8 +1,8 @@
 # Task Work Tree (find files)
 
 > Updated: 2026-10-21  
-> Two trees: this repo `~/owl-agent-line` (protocol/log line) + `~/workers` (research/Agent source).  
-> Rule: **edit code in lib/scripts/main; run tasks under data/tasks; logs and protocol in owl-agent-line.**
+> Two trees: `~/owl-agent-line` (protocol/log) + `~/workers` (**Agent/companion only**).  
+> Paper tasks: `~/essays/workers_relocated/`. Rule: edit companion in `lib/companion`; logs in owl-agent-line.
 
 ---
 
@@ -18,6 +18,7 @@ owl-agent-line/
 │   ├── DEV_PHASE_PLAN.md     ← P0–P4 phases
 │   ├── CLOUD_EXAM_20261021.md← cloud hands-on exam
 │   ├── AGX_ENDPOINT.md       ← AGX :11434 / 20B
+│   ├── OWL_NX_DEPLOY.md      ← P2 Orin NX secretary + forward
 │   ├── OWL_AGX_CLOUD_ROLE_SPLIT.md
 │   ├── HOST_OFFLINE_AGENT.md ← host offline Agent
 │   ├── WORKERS_TASK_TREE.md  ← this file
@@ -33,7 +34,12 @@ owl-agent-line/
 ├── issues/                   ← ISSUE tickets
 ├── scripts/
 │   ├── push_to_github.sh     ← one-shot push Owl_assistant (no host IP bind) ★
-│   ├── host_offline_agent.sh ← host offline Agent → AGX 20B ★
+│   ├── owl_agent_up.sh         ← launch dashboard :8765 + start connectable ★
+│   ├── host_offline_agent.sh   ← host offline Agent → AGX 20B ★
+│   ├── agx_m2_run.sh           ← M2 one-shot on AGX via SSH
+│   ├── endpoint_smoke.sh       ← P0/P1/M3 smoke on host
+│   ├── owl_nx_bootstrap.sh     ← P2 NX SSH/Ollama check
+│   ├── owl_nx_sync_models.sh   ← USB → NX ext4 rsync
 │   ├── owl_pack / …          ← see scripts/owl_pack/README.md
 └── .cursor/rules/            ← project rules (incl. DEVLOG auto-update)
 ```
@@ -53,13 +59,14 @@ owl-agent-line/
 
 ## B. workers (research / Agent source)
 
-> Root: `/home/ubuntu/workers` (post-cleanup ~38G class; trust local machine)
+> Root: `/home/ubuntu/workers` (**Agent-only**, ~7G: `.venv` + `data/runtime` + `lib/companion`)  
+> Paper/tasks relocated → `~/essays/workers_relocated/` (2026-10-22)
 
 ```
 workers/
-├── main.py, ceo_qt.py          ← entry: submission pipeline / CEO desk
-├── lib/                        ← core libs (companion / sci_* / anti_freeze…)
-├── scripts/companion/          ← cloud loops, host Agent helper scripts
+├── lib/companion/              ← **Agent webapp + engine (primary)**
+├── scripts/companion/          ← cloud loops, host Agent helpers
+├── scripts/pack_owl_deploy_to_usb.sh · workers_relocate_papers_to_essays.sh  (in owl-agent-line)
 ├── scripts/gpu/                ← host GPU / adapter training
 ├── tools/                      ← ops helpers
 ├── deploy/                     ← deploy (companion Docker, cloud env)
@@ -67,8 +74,7 @@ workers/
 ├── docs/                       ← notes and role docs
 ├── tests/                      ← tests
 ├── data/
-│   ├── tasks/<task_name>/      ← current paper task workspace
-│   ├── runtime/                ← runtime state
+│   ├── runtime/                ← companion runtime (required)
 │   ├── logs/                   ← logs
 │   ├── tc_alpha_research_prep_v2/  ← Alpha prep / corpus
 │   ├── datasets/               ← dataset cache
